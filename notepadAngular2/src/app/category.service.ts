@@ -21,7 +21,7 @@ export class CategoryService {
   }
 
   newCategory(category: Category) {
-    console.log("test3");
+    console.log("")
     const url = `${this.notesUrl}/categories`;
     return this.http.post(url, JSON.stringify(category), {})
       .map((res: Response) => res.json());
