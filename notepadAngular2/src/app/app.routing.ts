@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy} from '@angular/common';
-
+import {ModuleWithProviders} from '@angular/core';
 import { AppComponent }  from './app.component';
 import { NotesComponent } from './notes.component';
 import { CategoriesComponent } from './categories.component';
@@ -15,16 +15,16 @@ import { CategoryService } from './category.service';
 
 const appRoutes: Routes = [
   {
-  path: 'notes', component: NotesComponent 
+  path: 'notes', component: NotesComponent
   },
   {
-  path: 'categories', component: CategoriesComponent 
+  path: 'categories', component: CategoriesComponent
   },
   {
-  path: '', redirectTo: '/notes', pathMatch: 'full' 
+  path: '', redirectTo: '/notes', pathMatch: 'full'
   },
    {
-  path: 'about',component: AboutComponent 
+  path: 'about',component: AboutComponent
   },
 ]
 
