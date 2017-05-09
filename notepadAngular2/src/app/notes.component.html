@@ -1,0 +1,127 @@
+<div class="container">
+
+  <div class="page-header">
+    <div class="btn-toolbar pull-right">
+
+      <button class="btn btn-lg btn-default"
+        (click)="initNewNote()">
+        <i class="glyphicon glyphicon-plus"></i>
+        Add note
+      </button>
+
+      <a routerLink="/categories"
+         routerLinkActive="active"
+         class="btn btn-lg btn-default">
+        Categories
+      </a>
+
+    </div>
+
+    <h1>{{ title }}</h1>
+
+  </div>
+
+  <div *ngFor="let note of notes; let i = index;">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="btn-toolbar pull-right">
+          <button class="btn btn-sm btn-default"
+                  (click)="note_edited = i"
+                  *ngIf="note_edited != i">
+            <i class="glyphicon glyphicon-pencil"></i>
+            Modify
+          </button>
+          <button class="btn btn-sm btn-default"
+                  (click)="deleteNote(note)">
+            <i class="glyphicon glyphicon-trash"></i>
+            Delete
+          </button>
+        </div>
+        <span class="h3">
+          {{ note.title }} <small>{{ note.date | date: "dd/MM/y" }}</small>
+        </span>
+        <span class="label label-default"
+              *ngIf="note.category">
+          {{ note.category.name }}
+        </span>
+      </div>
+      <div class="panel-body">
+        {{ note.content }}
+      </div>
+    </div>
+
+    <!-- Note form -->
+    <div class="pannel form"
+         *ngIf="note_edited == i">
+      <div class="form-group">
+        <label for="title" class="control-label">Title</label>
+        <input id="title" 
+               type="text" 
+               class="form-control" 
+               required="true"
+               [(ngModel)]="note.title"/>
+      </div>
+      <div class="form-group">
+        <label for="content" class="control-label">Content</label>
+        <textarea id="content" 
+                  class="form-control" 
+                  required="true"
+                  [(ngModel)]="note.content">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="note.category">
+          <option *ngFor="let category of categories"
+                  [ngValue]="category"
+                  [selected]="note.category.id == category.id">
+          {{ category.name }}
+          {{ note.category.id == category.id }}
+          </option>
+        </select>
+      </div>
+      <button class="btn btn-success" (click)="updateNote(note, i)">
+        Validate
+      </button>
+      <button class="btn btn-default" (click)="note_edited = -1">
+        Close
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Note form -->
+  <div class="pannel form"
+       *ngIf="new_note">
+    <div class="form-group">
+      <label for="title" class="control-label">Title</label>
+      <input id="title" 
+             type="text" 
+             class="form-control" 
+             required="true"
+             [(ngModel)]="new_note.title"/>
+    </div>
+    <div class="form-group">
+      <label for="content" class="control-label">Content</label>
+      <textarea id="content" 
+                class="form-control" 
+                required="true"
+                [(ngModel)]="new_note.content">
+      </textarea>
+    </div>
+    <div class="form-group">
+      <select class="form-control" [(ngModel)]="new_note.category">
+        <option *ngFor="let category of categories"
+              [ngValue]="category">
+        {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-success" (click)="newNote(new_note)">
+      Validate
+    </button>
+    <button class="btn btn-default" (click)="deleteNewNote()">
+      Close
+    </button>
+  </div>
+
+</div>
