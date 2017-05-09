@@ -14,13 +14,14 @@ export class CategoryService {
 
   constructor(private http: Http) {}
 
-  getCategories() { 
+  getCategories() {
     const url = `${this.notesUrl}/categories`;
     return this.http.get(url)
       .map((res: Response) => res.json());
   }
 
   newCategory(category: Category) {
+    console.log("test3");
     const url = `${this.notesUrl}/categories`;
     return this.http.post(url, JSON.stringify(category), {})
       .map((res: Response) => res.json());

@@ -5,6 +5,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './app/addnote.component.html',
 })
 
-export class AddNoteComponent { 
- 
+export class AddNoteComponent {
+
 }

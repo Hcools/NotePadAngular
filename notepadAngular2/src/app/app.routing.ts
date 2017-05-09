@@ -7,8 +7,10 @@ import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {ModuleWithProviders} from '@angular/core';
 import { AppComponent }  from './app.component';
 import { NotesComponent } from './notes.component';
+import { AddNoteComponent } from './addnote.component';
 import { CategoriesComponent } from './categories.component';
 import { AboutComponent } from './about.component';
+import { AddCategoryComponent } from './addcategory.component';
 
 import { NoteService } from './note.service';
 import { CategoryService } from './category.service';
@@ -25,6 +27,12 @@ const appRoutes: Routes = [
   },
    {
   path: 'about',component: AboutComponent
+  },
+  {
+   path: 'addnote',component: AddNoteComponent
+   },
+   {
+  path: 'addcategory',component: AddCategoryComponent
   },
 ]
 

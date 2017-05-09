@@ -9,6 +9,7 @@ import { AppComponent }  from './app.component';
 import { NotesComponent } from './notes.component';
 import { AddNoteComponent } from './addnote.component';
 import { CategoriesComponent } from './categories.component';
+import { AddCategoryComponent } from './addcategory.component';
 import { AboutComponent } from './about.component';
 
 import { NoteService } from './note.service';
@@ -18,21 +19,21 @@ import { routing } from './app.routing';
 
 
 @NgModule({
-  imports:      [ 
+  imports:      [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
   ],
-  declarations: [ 
-    AppComponent,NotesComponent,CategoriesComponent,AboutComponent,AddNoteComponent,
+  declarations: [
+    AppComponent,NotesComponent,CategoriesComponent,AboutComponent,AddNoteComponent,AddCategoryComponent,
   ],
   providers: [
     NoteService,
     CategoryService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
-  bootstrap: [ 
+  bootstrap: [
     AppComponent,
   ],
 })

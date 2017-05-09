@@ -14,7 +14,7 @@ export class NoteService {
 
   constructor(private http: Http) {}
 
-  getNotes() { 
+  getNotes() {
     const url = `${this.notesUrl}/notes`;
     return this.http.get(url)
       .map((res: Response) => res.json());
@@ -33,7 +33,7 @@ export class NoteService {
     return this.http.patch(url, JSON.stringify(note), {})
       .map((res: Response) => res.json());
   }
-
+//`http://localhost/symfonyAngular/web/app_dev.php/notepad/api/notes/37`
   deleteNote(note: Note) {
     const note_id = note.id;
     const url = `${this.notesUrl}/notes/${note_id}`;
