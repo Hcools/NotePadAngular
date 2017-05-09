@@ -11,30 +11,16 @@ import { CategoriesComponent } from './categories.component';
 import { NoteService } from './note.service';
 import { CategoryService } from './category.service';
 
-import { routing } from './app.routing';
+const appRoutes: Routes = [
+  {
+  path: 'notes', component: NotesComponent 
+  },
+  {
+  path: 'categories', component: CategoriesComponent 
+  },
+  {
+  path: '', redirectTo: '/notes', pathMatch: 'full' 
+  },
+]
 
-
-
-@NgModule({
-  imports:      [ 
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    routing,
-  ],
-  declarations: [ 
-    AppComponent,
-    NotesComponent,
-    CategoriesComponent,
-  ],
-  providers: [
-    NoteService,
-    CategoryService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
-  ],
-  bootstrap: [ 
-    AppComponent,
-  ],
-})
-
-export class AppModule { }
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
