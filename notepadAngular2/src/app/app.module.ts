@@ -7,12 +7,14 @@ import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { AppComponent }  from './app.component';
 import { NotesComponent } from './notes.component';
+import { AddNoteComponent } from './addnote.component';
 import { CategoriesComponent } from './categories.component';
+import { AboutComponent } from './about.component';
+
 import { NoteService } from './note.service';
 import { CategoryService } from './category.service';
 
 import { routing } from './app.routing';
-
 
 
 @NgModule({
@@ -23,9 +25,7 @@ import { routing } from './app.routing';
     routing,
   ],
   declarations: [ 
-    AppComponent,
-    NotesComponent,
-    CategoriesComponent,
+    AppComponent,NotesComponent,CategoriesComponent,AboutComponent,AddNoteComponent,
   ],
   providers: [
     NoteService,

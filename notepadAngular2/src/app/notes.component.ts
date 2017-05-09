@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input } from '@angular/core';
 
 import { Category } from './category';
 import { Note } from './note';
@@ -64,6 +64,7 @@ export class NotesComponent implements OnInit {
   }
 
   updateNote(note: Note, index: number): void {
+ 
     this.note_service.updateNote(note).subscribe(
       data => { this.notes[index] = data},
       err => console.error(err),
@@ -83,7 +84,7 @@ export class NotesComponent implements OnInit {
     this.new_note = new Note();
   }
 
-  deleteNewNote() {
+  cancelNewNote() {
     this.new_note = null;
   }
 
