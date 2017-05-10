@@ -1,5 +1,4 @@
 ﻿<div class="container">
-
   <div class="page-header">
     <h1>{{ title }}</h1>
   </div>
@@ -11,7 +10,6 @@
           <button class="btn btn-sm btn-warning"
                   (click)="note_edited = i"
                   *ngIf="note_edited != i">
-
             <i class="glyphicon glyphicon-pencil"></i>
             Modify
           </button>
@@ -22,7 +20,7 @@
           </button>
         </div>
         <span class="h3">
-          {{ note.title }} <small>{{ note.date | date: "dd/MM/y" }}</small>
+          {{ note.title }} <small>{{ note.date | date: "dd/MM/yyyy" }}</small>
         </span>
         <span class="label label-default"
               *ngIf="note.category">
@@ -33,8 +31,6 @@
         {{ note.content }}
       </div>
     </div>
-
-    <!-- Note form -->
     <div class="pannel form"
          *ngIf="note_edited == i">
       <div class="form-group">
@@ -59,7 +55,6 @@
                   [ngValue]="category"
                   [selected]="note.category.id == category.id">
           {{ category.name }}
-          {{ note.category.id == category.id }}
           </option>
         </select>
       </div>
@@ -70,7 +65,5 @@
         Close
       </button>
     </div>
-
   </div>
-
 </div>

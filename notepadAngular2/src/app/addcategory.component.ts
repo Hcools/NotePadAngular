@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Category } from './category';
-import { CATEGORIES } from './mock-categories';
-
+//import { CATEGORIES } from './mock-categories';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {ModuleWithProviders} from '@angular/core';
+
 import { AppComponent }  from './app.component';
 import { NotesComponent } from './notes.component';
 import { AddNoteComponent } from './addnote.component';
@@ -26,13 +26,16 @@ import { CategoryService } from './category.service';
 export class AddCategoryComponent implements OnInit {
 
   title = 'Ajouter une catégorie';
-
-  categories = CATEGORIES;
+  categories:Category[];
   category_edited = -1;
   new_category: Category = null;
 
-  constructor(
-    private category_service: CategoryService) {
+  constructor( private category_service: CategoryService) {}
+
+  ngOnInit(): void {
+    this.categories = this.category_service.sendCategories();
+    this.getCategories();
+    this.new_category = new Category();
   }
 
   getCategories(): void {
@@ -47,6 +50,10 @@ export class AddCategoryComponent implements OnInit {
     );
   }
 
+  initNewCategory() {
+    this.new_category = new Category();
+  }
+
   newCategory(category: Category) {
     this.category_service.newCategory(category).subscribe(
       data => { this.categories.unshift(data) },
@@ -55,16 +62,8 @@ export class AddCategoryComponent implements OnInit {
     );
   }
 
-  initNewCategory() {
-    this.new_category = new Category();
-  }
-
   deleteNewCategory() {
     this.new_category = null;
   }
 
-  ngOnInit(): void {
-    this.getCategories();
-    this.new_category = new Category();
-  }
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
 import { Category } from './category';
-import { CATEGORIES } from './mock-categories';
+//import { CATEGORIES } from './mock-categories';
 import { CategoryService } from './category.service';
 
 @Component({
@@ -14,12 +13,18 @@ export class CategoriesComponent implements OnInit {
 
   title = 'Liste des catégories';
 
-  categories = CATEGORIES;
+  categories:Category[];
   category_edited = -1;
   new_category: Category = null;
 
   constructor(
     private category_service: CategoryService) {
+
+  }
+
+  ngOnInit(): void {
+    this.categories = this.category_service.sendCategories();
+    this.getCategories();
   }
 
   getCategories(): void {
@@ -39,13 +44,6 @@ export class CategoriesComponent implements OnInit {
     this.category_edited = -1;
   }
 
-  newCategory(category: Category) {
-    this.category_service.newCategory(category).subscribe(
-      data => { this.categories.unshift(data) },
-      err => console.error(err),
-      () => { this.new_category = null }
-    );
-  }
 
   updateCategory(category: Category, index: number) {
     this.category_service.updateCategory(category).subscribe(
@@ -63,15 +61,5 @@ export class CategoriesComponent implements OnInit {
     );
   }
 
-  initNewCategory() {
-    this.new_category = new Category();
-  }
 
-  deleteNewCategory() {
-    this.new_category = null;
-  }
-
-  ngOnInit(): void {
-    this.getCategories();
-  }
 }

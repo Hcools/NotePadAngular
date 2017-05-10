@@ -2,8 +2,8 @@
 
 import { Category } from './category';
 import { Note } from './note';
-import { CATEGORIES } from './mock-categories';
-import { NOTES } from './mock-notes';
+//import { CATEGORIES } from './mock-categories';
+//import { NOTES } from './mock-notes';
 import { NoteService } from './note.service';
 import { CategoryService } from './category.service';
 
@@ -16,19 +16,22 @@ export class NotesComponent implements OnInit {
   title = 'Liste des notes';
 
   //@Input() notes = NOTES;
-  notes = NOTES;
-  categories = CATEGORIES;
+  notes:Note[];
+  categories:Category[];
   note_edited = -1;
   new_note: Note = null;
 
   constructor(
     private note_service: NoteService,
     private category_service: CategoryService) {
+      this.notes = this.note_service.sendSample();
+      this.categories = this.category_service.sendCategories();
+      this.getNotes();
+      this.getCategories();
+
   }
 
     ngOnInit(): void {
-      this.getNotes();
-      this.getCategories();
       console.log("rechargement des infos");
     }
 
@@ -61,16 +64,7 @@ export class NotesComponent implements OnInit {
     this.note_edited = -1;
   }
 
-  newNote(note: Note) {
-    this.note_service.newNote(note).subscribe(
-      data => { this.notes.unshift(data) },
-      err => console.error(err),
-      () => { this.new_note = null }
-    );
-  }
-
   updateNote(note: Note, index: number): void {
-
     this.note_service.updateNote(note).subscribe(
       data => { this.notes[index] = data},
       err => console.error(err),
@@ -85,13 +79,4 @@ export class NotesComponent implements OnInit {
       () => { }
     );
   }
-
-  initNewNote() {
-    this.new_note = new Note();
-  }
-
-  cancelNewNote() {
-    this.new_note = null;
-  }
-
 }

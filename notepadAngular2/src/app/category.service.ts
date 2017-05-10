@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Category } from './category';
-import { CATEGORIES } from './mock-categories';
 
 @Injectable()
 export class CategoryService {
@@ -39,5 +38,22 @@ export class CategoryService {
     const url = `${this.notesUrl}/categories/${cat_id}`;
     return this.http.delete(url, {})
       .map((res: Response) => res.json());
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////
+
+  categories:Category[] = [
+    {
+      id: 1,
+      name: 'testcategeory1',
+    },
+    {
+      id: 2,
+      name: 'testcategeory2',
+    },
+  ];
+
+  sendCategories(){
+    return this.categories;
   }
 }
