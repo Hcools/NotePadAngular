@@ -2,9 +2,11 @@
 
 @Component({
   selector: 'about',
-  templateUrl: './app/about.component.html',
+  templateUrl: './app/templates/about.component.html',
 })
 
-export class AboutComponent { 
- 
+export class AboutComponent {
+  title = 'A propos';
+
+
 }

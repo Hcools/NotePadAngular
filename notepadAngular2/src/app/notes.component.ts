@@ -9,11 +9,11 @@ import { CategoryService } from './category.service';
 
 @Component({
   selector: 'my-notes',
-  templateUrl: './app/notes.component.html',
+  templateUrl: './app/templates/notes.component.html',
 })
 
-export class NotesComponent implements OnInit { 
-  title = 'Notepad';
+export class NotesComponent implements OnInit {
+  title = 'Liste des notes';
 
   //@Input() notes = NOTES;
   notes = NOTES;
@@ -25,6 +25,12 @@ export class NotesComponent implements OnInit {
     private note_service: NoteService,
     private category_service: CategoryService) {
   }
+
+    ngOnInit(): void {
+      this.getNotes();
+      this.getCategories();
+      console.log("rechargement des infos");
+    }
 
   getNotes(): void {
     this.note_service.getNotes().subscribe(
@@ -64,7 +70,7 @@ export class NotesComponent implements OnInit {
   }
 
   updateNote(note: Note, index: number): void {
- 
+
     this.note_service.updateNote(note).subscribe(
       data => { this.notes[index] = data},
       err => console.error(err),
@@ -88,8 +94,4 @@ export class NotesComponent implements OnInit {
     this.new_note = null;
   }
 
-  ngOnInit(): void {
-    this.getNotes();
-    this.getCategories();
-  }
 }

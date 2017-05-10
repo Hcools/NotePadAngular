@@ -20,12 +20,12 @@ import { CategoryService } from './category.service';
 
 @Component({
   selector: 'addcategory',
-  templateUrl: './app/addcategory.html',
+  templateUrl: './app/templates/addcategory.html',
 })
 
 export class AddCategoryComponent implements OnInit {
 
-  title = 'Notepad';
+  title = 'Ajouter une catégorie';
 
   categories = CATEGORIES;
   category_edited = -1;
@@ -43,13 +43,8 @@ export class AddCategoryComponent implements OnInit {
       err => console.error(err),
       // function that runs on completion
       //() => console.log(this.categories)
-      null
+     null
     );
-  }
-
-  validate(category: Category) {
-    console.log(category);
-    this.category_edited = -1;
   }
 
   newCategory(category: Category) {
@@ -57,22 +52,6 @@ export class AddCategoryComponent implements OnInit {
       data => { this.categories.unshift(data) },
       err => console.error(err),
       () => { this.new_category = null }
-    );
-  }
-
-  updateCategory(category: Category, index: number) {
-    this.category_service.updateCategory(category).subscribe(
-      data => { this.categories[index] = data},
-      err => console.error(err),
-      () => { this.category_edited = -1; }
-    );
-  }
-
-  deleteCategory(category: Category, index: number) {
-    this.category_service.deleteCategory(category).subscribe(
-      data => { this.categories.splice(index, 1) },
-      err => console.error(err),
-      () => { }
     );
   }
 

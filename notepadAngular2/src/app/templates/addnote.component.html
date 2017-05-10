@@ -1,5 +1,8 @@
-﻿<h1>Addnote</h1>
+
 <div class="container">
+    <div class="page-header">
+  <h1>{{ title }}</h1>
+</div>
   <!-- Note form -->
   <div class="pannel form"
        *ngIf="new_note">
@@ -27,11 +30,12 @@
         </option>
       </select>
     </div>
-    <button class="btn btn-success" (click)="newNote(new_note)"routerLink="/notes"
+    <button class="btn btn-info" (click)="newNote(new_note)"routerLink="/notes"
        routerLinkActive="active">
       Validate
     </button>
-    <button class="btn btn-default" (click)="cancelNewNote()"routerLink="/notes"
+    <button class="btn btn-danger"
+    (click)="cancelNewNote()"routerLink="/notes"
        routerLinkActive="active">
       Close
     </button>

@@ -7,11 +7,12 @@ import { CategoryService } from './category.service';
 
 @Component({
   selector: 'my-categories',
-  templateUrl: './app/categories.component.html',
+  templateUrl: './app/templates/categories.component.html',
 })
 
 export class CategoriesComponent implements OnInit {
-  title = 'Notepad';
+
+  title = 'Liste des catégories';
 
   categories = CATEGORIES;
   category_edited = -1;

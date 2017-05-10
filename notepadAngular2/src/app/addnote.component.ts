@@ -9,11 +9,11 @@ import { CategoryService } from './category.service';
 
 @Component({
   selector: 'addnote',
-  templateUrl: './app/addnote.component.html',
+  templateUrl: './app/templates/addnote.component.html',
 })
 
 export class AddNoteComponent implements OnInit {
-  title = 'Notepad';
+  title = 'Ajouter une note';
 
   //@Input() notes = NOTES;
   notes = NOTES;
