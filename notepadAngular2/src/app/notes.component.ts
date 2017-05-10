@@ -2,8 +2,7 @@
 
 import { Category } from './category';
 import { Note } from './note';
-//import { CATEGORIES } from './mock-categories';
-//import { NOTES } from './mock-notes';
+
 import { NoteService } from './note.service';
 import { CategoryService } from './category.service';
 

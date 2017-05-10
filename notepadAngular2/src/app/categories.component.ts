@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Category } from './category';
-//import { CATEGORIES } from './mock-categories';
+
 import { CategoryService } from './category.service';
 
 @Component({
