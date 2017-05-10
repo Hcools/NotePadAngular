@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Note } from './note';
-import { NOTES } from './mock-notes';
+
 
 @Injectable()
 export class NoteService {
@@ -15,31 +15,37 @@ export class NoteService {
   constructor(private http: Http) {}
 
   getNotes() {
-    const url = `${this.notesUrl}/notes`;
-    return this.http.get(url)
+    console.log(`${this.notesUrl}/notes`);
+  //  const url = `${this.notesUrl}/notes`;
+    return this.http.get(`${this.notesUrl}/notes`)
       .map((res: Response) => res.json());
   }
 
   newNote(note: Note) {
-    const cat_id = note.category.id;
-    const url = `${this.notesUrl}/categories/${cat_id}/notes`;
-    return this.http.post(url, JSON.stringify(note), {})
+    const idCat = note.category.id;
+    console.log( `${this.notesUrl}/categories/${idCat}/notes`);
+
+    return this.http.post( `${this.notesUrl}/categories/${idCat}/notes`, JSON.stringify(note), {})
+      .map((res: Response) => res.json());
+  }
+
+  //`http://localhost/symfonyAngular/web/app_dev.php/notepad/api/notes/37`
+  deleteNote(note: Note) {
+    const note_id = note.id;
+    console.log(`${this.notesUrl}/notes/${note_id}`);
+
+    return this.http.delete(`${this.notesUrl}/notes/${note_id}`, {})
       .map((res: Response) => res.json());
   }
 
   updateNote(note: Note) {
     const note_id = note.id;
-    const url = `${this.notesUrl}/notes/${note_id}`;
-    return this.http.patch(url, JSON.stringify(note), {})
+    console.log(`${this.notesUrl}/notes/${note_id}`);
+
+    return this.http.post(`${this.notesUrl}/notes/${note_id}`, JSON.stringify(note), {})
       .map((res: Response) => res.json());
   }
-//`http://localhost/symfonyAngular/web/app_dev.php/notepad/api/notes/37`
-  deleteNote(note: Note) {
-    const note_id = note.id;
-    const url = `${this.notesUrl}/notes/${note_id}`;
-    return this.http.delete(url, {})
-      .map((res: Response) => res.json());
-  }
+
 
   ///////////////////////////////////////////////////////////////////////////
 

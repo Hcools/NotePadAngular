@@ -1,4 +1,5 @@
-﻿import { Injectable } from '@angular/core';
+
+import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Observable} from 'rxjs/Rx';
 
@@ -7,36 +8,39 @@ import 'rxjs/add/operator/catch';
 
 import { Category } from './category';
 
+
 @Injectable()
 export class CategoryService {
-  private notesUrl = 'http://localhost/symfonyAngular/web/app_dev.php/notepad/api';
+
+  private APIUrl = 'http://localhost/symfonyAngular/web/app_dev.php/notepad/api';
 
   constructor(private http: Http) {}
 
   getCategories() {
-    const url = `${this.notesUrl}/categories`;
-    return this.http.get(url)
+    console.log(`${this.APIUrl}/categories`);
+    return this.http.get( `${this.APIUrl}/categories`)
       .map((res: Response) => res.json());
   }
 
   newCategory(category: Category) {
-    console.log("")
-    const url = `${this.notesUrl}/categories`;
-    return this.http.post(url, JSON.stringify(category), {})
+    console.log(`${this.APIUrl}/categories`);
+    return this.http.post( `${this.APIUrl}/categories`, JSON.stringify(category), {})
       .map((res: Response) => res.json());
   }
 
   updateCategory(category: Category) {
-    const cat_id = category.id;
-    const url = `${this.notesUrl}/categories/${cat_id}`;
-    return this.http.patch(url, JSON.stringify(category), {})
+    const idCat = category.id;
+    console.log( `${this.APIUrl}/categories/${idCat}`);
+
+    return this.http.put( `${this.APIUrl}/categories/${idCat}`, JSON.stringify(category), {})
       .map((res: Response) => res.json());
   }
 
   deleteCategory(category: Category) {
-    const cat_id = category.id;
-    const url = `${this.notesUrl}/categories/${cat_id}`;
-    return this.http.delete(url, {})
+    const idCat = category.id;
+    console.log(`${this.APIUrl}/categories/${idCat}`);
+
+    return this.http.delete(`${this.APIUrl}/categories/${idCat}`, {})
       .map((res: Response) => res.json());
   }
 

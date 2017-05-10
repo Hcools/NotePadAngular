@@ -6,30 +6,30 @@
   <table class="table table-striped">
     <tr *ngFor="let category of categories; let i = index;">
       <td>
-        <span *ngIf="category_edited != i">
+        <span *ngIf="categoryEdited != i">
           {{ category.name }}
         </span>
         <input id="title"
                type="text"
                class="form-control"
-               required="true"
-               *ngIf="category_edited == i"
-               [(ngModel)]="category.name"/>
+
+               *ngIf="categoryEdited == i"
+               [(ngModel)]="category.name" #ctrl="ngModel" required/>
         </td>
         <td class="text-right">
           <button class="btn btn-sm btn-info"
                   (click)="updateCategory(category, i)"
-                  *ngIf="category_edited == i">
+                  *ngIf="categoryEdited == i">
             Validate
           </button>
           <button class="btn btn-sm btn-danger"
-                  (click)="category_edited = -1"
-                  *ngIf="category_edited == i">
+                  (click)="categoryEdited = -1"
+                  *ngIf="categoryEdited == i">
             Close
           </button>
           <button class="btn btn-sm btn-warning"
-                  (click)="category_edited = i"
-                  *ngIf="category_edited != i">
+                  (click)="categoryEdited = i"
+                  *ngIf="categoryEdited != i">
             <i class="glyphicon glyphicon-pencil"></i>
             Modify
           </button>

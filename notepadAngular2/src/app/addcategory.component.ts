@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Category } from './category';
-//import { CATEGORIES } from './mock-categories';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {ModuleWithProviders} from '@angular/core';
+
 
 import { AppComponent }  from './app.component';
 import { NotesComponent } from './notes.component';
@@ -27,43 +27,44 @@ export class AddCategoryComponent implements OnInit {
 
   title = 'Ajouter une catégorie';
   categories:Category[];
-  category_edited = -1;
-  new_category: Category = null;
+  newcategory: Category = null;
 
   constructor( private category_service: CategoryService) {}
 
   ngOnInit(): void {
+    this.newcategory = new Category();
+    console.log(this.newCategory);
     this.categories = this.category_service.sendCategories();
     this.getCategories();
-    this.new_category = new Category();
+console.log("fdfvcfde")
   }
 
   getCategories(): void {
     this.category_service.getCategories().subscribe(
-      // function that runs on success
+      //works
       data => { this.categories = data},
-      // function that runs on error
+      //doesnt works
       err => console.error(err),
-      // function that runs on completion
-      //() => console.log(this.categories)
+      //() => console.log(this.categories),
      null
     );
   }
 
   initNewCategory() {
-    this.new_category = new Category();
+    this.newcategory = new Category();
   }
 
   newCategory(category: Category) {
+    console.log("ggggggg");
     this.category_service.newCategory(category).subscribe(
       data => { this.categories.unshift(data) },
       err => console.error(err),
-      () => { this.new_category = null }
+      //() => { this.newcategory = null }
     );
   }
 
   deleteNewCategory() {
-    this.new_category = null;
+    this.newcategory = null;
   }
 
 }

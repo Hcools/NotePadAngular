@@ -14,8 +14,8 @@ export class CategoriesComponent implements OnInit {
   title = 'Liste des catégories';
 
   categories:Category[];
-  category_edited = -1;
-  new_category: Category = null;
+  categoryEdited = -1;
+  newcategory: Category = null;
 
   constructor(
     private category_service: CategoryService) {
@@ -41,7 +41,7 @@ export class CategoriesComponent implements OnInit {
 
   validate(category: Category) {
     console.log(category);
-    this.category_edited = -1;
+    this.categoryEdited = -1;
   }
 
 
@@ -49,7 +49,7 @@ export class CategoriesComponent implements OnInit {
     this.category_service.updateCategory(category).subscribe(
       data => { this.categories[index] = data},
       err => console.error(err),
-      () => { this.category_edited = -1; }
+      () => { this.categoryEdited = -1; }
     );
   }
 

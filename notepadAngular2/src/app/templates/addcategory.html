@@ -4,26 +4,29 @@
     </div>
 
   <table class="table table-striped">
-    <tr *ngIf="new_category">
+    <tr>
+
       <td>
         <input id="title"
                type="text"
                class="form-control"
-               required="true"
-               [(ngModel)]="new_category.name"/>
+
+               [(ngModel)]="newcategory.name"
+               #ctrl="ngModel" required/>
       </td>
       <td class="text-right">
         <button class="btn btn-sm btn-info"
-                (click)="newCategory(new_category)"
+                (click)="newCategory(newcategory)"
                 routerLink="/categories"
-                routerLinkActive="active">
-          Validate
+                routerLinkActive="active"
+                [disabled]="!ctrl.valid">
+          Valider
         </button>
         <button class="btn btn-sm btn-danger"
                 (click)="deleteNewCategory()"
                 routerLink="/categories"
                 routerLinkActive="active">
-          Close
+          Fermer
         </button>
       </td>
     </tr>

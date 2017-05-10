@@ -18,7 +18,7 @@ export class NotesComponent implements OnInit {
   notes:Note[];
   categories:Category[];
   note_edited = -1;
-  new_note: Note = null;
+  newNote: Note = null;
 
   constructor(
     private note_service: NoteService,
